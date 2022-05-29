@@ -33,13 +33,29 @@ export async function template(options) {
   log.debug(`working directory: ${workingDirectory}`);
 
   const templates = getTemplates(workingDirectory);
-  const manifestFiles = getManifestFiles(workingDirectory, options.manifest);
 
   let manifest = {};
 
-  for(const manifestFile of manifestFiles) {
-    const doc = yaml.load(fs.readFileSync(manifestFile, 'utf8'));
-    manifest = mergeDeep(manifest, doc);
+  if(!options.manifestData) {
+    const manifestFiles = getManifestFiles(workingDirectory, options.manifest);
+    for(const manifestFile of manifestFiles) {
+      try {
+        const doc = yaml.load(fs.readFileSync(manifestFile, 'utf8'));
+        manifest = mergeDeep(manifest, doc);
+      }
+      catch(err) {
+        log.error(`Error loading manifest file: ${manifestFile}`);
+      }    
+    }
+  }
+  else {
+    try {
+      // TODO validate manifestData
+      manifest = yaml.load(options.manifestData);
+    }
+    catch(err) {
+      log.error(`Error reading manifest data`);
+    }
   }
 
   for(const file of manifest.files) {

@@ -26,6 +26,7 @@ tmpltr [workingDirectory] [--manifest <manifest yml file>] [--verbose] [--dryrun
 | --dryrun         | true     | false   | do not write any templated files                                                                             |
 | --console        | true     | false   | print the templated files to the console                                                                     |
 | --manifest       | true     | ''      | location of the manifest.yml file. absolute or relative to the pwd                                           |
+| --stdin          | true     | false   | reads the manifest file data from stdin. useful for usage with secrets                                       |
 
 
 ### File structure
