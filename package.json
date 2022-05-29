@@ -1,0 +1,34 @@
+{
+  "name": "tmpltr",
+  "version": "1.0.2",
+  "description": "Templating with mustache and YAML",
+  "main": "bin.js",
+  "type": "module",
+  "bin": {
+    "tmpltr": "./bin.js"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mxcd/tmpltr.git"
+  },
+  "author": "maxpartenfelder@gmail.com",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mxcd/tmpltr/issues"
+  },
+  "keywords": [
+    "templating",
+    "yaml"
+  ],
+  "dependencies": {
+    "argparse": "^2.0.1",
+    "js-yaml": "^4.1.0",
+    "logform": "^2.4.0",
+    "mustache": "^4.2.0",
+    "winston": "^3.7.2",
+    "yaml-validator": "^4.0.0"
+  }
+}
