@@ -13,10 +13,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     
-    - name: Setup git user
-      run: |
-        git config user.name "$(git --no-pager log --format=format:'%an' -n 1)"
-        git config user.email "$(git --no-pager log --format=format:'%ae' -n 1)"
     - name: Setup node 16.x
       uses: actions/setup-node@v2
       with:
@@ -29,7 +25,3 @@ jobs:
         npm version ${{ github.event.release.tag_name }} --no-git-tag-version
         npm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
         npm publish
-    - name: Push new version
-      uses: stefanzweifel/git-auto-commit-action@v4
-      with:
-        commit_message: Package version upgrade
