@@ -37,7 +37,8 @@ For mustache template files, please refer to [the official documentation](https:
 files: 
     # destination file relative to the working directory
   - destination: ./foo.txt 
-    # template file name. all template files must be in the working directory. *.mustache file extension is optional.
+    # template file name. all template files must be in the working directory. 
+    # *.mustache file extension is optional.
     template: my-template[.mustache] 
     # object of values to be rendered into the template
     values:
@@ -101,3 +102,6 @@ npx tmpltr
 ``` bash
 docker run --rm -v ${PWD}:/usr/src mxcd/tmpltr
 ```
+  
+  
+Made with &#9829;, pizza and beer by MaPa
