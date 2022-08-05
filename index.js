@@ -76,15 +76,30 @@ export async function template(options) {
     const template = fs.readFileSync(templateFile, 'utf8');
     const output = Mustache.render(template, file.values);
 
-    if(!options.dryrun) {
-      const outputFile = path.resolve(path.join(workingDirectory, file.destination));
-      const parentDir = path.dirname(outputFile);
-      if(!fs.existsSync(parentDir)) {
-        log.debug(`creating parent dir '${parentDir}'`); 
+    const outputFile = path.resolve(path.join(workingDirectory, file.destination));
+    log.debug(`output file: '${outputFile}'`);
+    const parentDir = path.dirname(outputFile);
+    log.debug(`output file parent dir: '${parentDir}'`);
+    
+
+    if(!fs.existsSync(parentDir)) {
+      log.debug(`creating parent dir '${parentDir}'`); 
+      if(!options.dryrun) {
         fs.mkdirSync(parentDir, { recursive: true});
       }
-      log.debug(`writing file: ${outputFile}`);
+      else {
+        log.debug(`not creating parent dir due to '--dryrun'`); 
+      }
+    }
+    else {
+      log.debug(`parent dir already exists`); 
+    }
+    log.debug(`writing file: ${outputFile}`);
+    if(!options.dryrun) {
       fs.writeFileSync(outputFile, output);
+    }
+    else {
+      log.debug(`not writing file due to '--dryrun'`); 
     }
 
     if(options.console) {
