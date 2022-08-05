@@ -78,6 +78,11 @@ export async function template(options) {
 
     if(!options.dryrun) {
       const outputFile = path.resolve(path.join(workingDirectory, file.destination));
+      const parentDir = path.dirname(outputFile);
+      if(!fs.existsSync(parentDir)) {
+        log.debug(`creating parent dir '${parentDir}'`); 
+        fs.mkdirSync(parentDir, { recursive: true});
+      }
       log.debug(`writing file: ${outputFile}`);
       fs.writeFileSync(outputFile, output);
     }
