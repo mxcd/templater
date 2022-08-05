@@ -1,6 +1,6 @@
 {
   "name": "tmpltr",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Templating with mustache and YAML",
   "main": "bin.js",
   "type": "module",
