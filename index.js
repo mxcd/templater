@@ -58,6 +58,10 @@ export async function template(options) {
     }
   }
 
+  log.debug(`\n\n-----------------------------------------------------------\n`)
+  log.debug(JSON.stringify(manifest, null, 2));
+  log.debug(`\n-----------------------------------------------------------\n\n`)
+
   for(const file of manifest.files) {
     let templateMatch = false;
     let templateFile = '';
